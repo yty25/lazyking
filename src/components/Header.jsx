@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { Upload, Moon, Crown } from 'lucide-react';
+import { Crown } from 'lucide-react';
 
-export default function Header({ data, onUpload }) {
+export default function Header({ data }) {
   return (
     <header className="glass border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 py-4">
@@ -34,19 +34,6 @@ export default function Header({ data, onUpload }) {
                 </span>
               </motion.div>
             )}
-            
-            <label className="cursor-pointer">
-              <input
-                type="file"
-                accept=".xlsx,.xls"
-                onChange={onUpload}
-                className="hidden"
-              />
-              <div className="flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl transition-colors">
-                <Upload className="w-4 h-4" />
-                <span className="text-sm">上传数据</span>
-              </div>
-            </label>
           </div>
         </div>
       </div>
