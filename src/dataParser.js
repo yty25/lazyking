@@ -16,6 +16,17 @@ export const USERS = [
   { id: 'issac', name: 'Issac', color: '#dda0dd', avatar: '🐺' },
 ];
 
+// Excel header 名字到 user id 的映射
+const HEADER_TO_ID = {
+  'kyle': 'kyle',
+  'cj': 'cj',
+  '宝宣': 'baoxuan',
+  '聪': 'cong',
+  'yty': 'yty',
+  'issac': 'issac',
+  'issacneverfail': 'issac',
+};
+
 // 解析每日记录 Sheet
 export function parseDailyRecords(data) {
   if (!data || data.length < 2) return [];
@@ -35,7 +46,9 @@ export function parseDailyRecords(data) {
     headers.forEach((user, idx) => {
       const rank = row[idx];
       if (typeof rank === 'number' && !isNaN(rank)) {
-        const userId = user.toLowerCase().trim();
+        // 使用映射表转换 header 名字到 user id
+        const headerName = String(user).trim();
+        const userId = HEADER_TO_ID[headerName] || headerName.toLowerCase();
         dayRecord.rankings[userId] = {
           rank: rank,
           score: SCORE_MAP[rank] || 0
